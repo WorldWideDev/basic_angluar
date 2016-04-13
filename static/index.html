@@ -1,0 +1,32 @@
+<html >
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript">
+		var myApp = angular.module('myApp', []);
+		myApp.controller('foodController', function ($scope){
+			$scope.foods = ['pizza', 'nachos']
+			$scope.addFood = function(){
+				console.log($scope.newFood)
+				$scope.foods.push($scope.newFood)
+				$scope.newFood = ''
+			}
+		})
+
+	</script>
+</head>
+<body ng-app='myApp'>
+	<div ng-controller='foodController'>
+		SEARCH: <input type='text' ng-model='filter'>
+		<ul>
+			<li ng-repeat='food in foods | filter: filter'>{{food}}</li>
+		</ul>
+		<form>
+			Add a FOOD: <input type='text' ng-model='newFood'>
+			<input type='submit' value='add new food' ng-click='addFood()'>
+		</form>
+		<p ng-bind='newFood'></p>
+	</div>
+</body>
+</html>
